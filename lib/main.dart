@@ -27,11 +27,16 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
+  void getNext() {
+    current = WordPair.random();
+    notifyListeners();
+  }
 }
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // どのウィジェットでも、そのウィジェットを常に最新にするために、周囲の状況が変化するたびに自動的に呼び出される build() メソッドを定義します。
     var appState = context.watch<MyAppState>();
 
     return Scaffold(
@@ -41,7 +46,7 @@ class MyHomePage extends StatelessWidget {
           Text(appState.current.asLowerCase),
           ElevatedButton(
             onPressed: () {
-              print('button pressed!');
+              appState.getNext();
             },
             child: Text('Next'),
           ),
