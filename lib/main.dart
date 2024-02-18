@@ -38,12 +38,13 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // どのウィジェットでも、そのウィジェットを常に最新にするために、周囲の状況が変化するたびに自動的に呼び出される build() メソッドを定義します。
     var appState = context.watch<MyAppState>();
+    var pair = appState.current;
 
     return Scaffold(
       body: Column(
         children: [
           Text('A random AWESOME idea:'), // ← Example change.
-          Text(appState.current.asLowerCase),
+          BigCard(pair: pair),
           ElevatedButton(
             onPressed: () {
               appState.getNext();
@@ -53,5 +54,19 @@ class MyHomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class BigCard extends StatelessWidget {
+  const BigCard({
+    super.key,
+    required this.pair,
+  });
+
+  final WordPair pair;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(pair.asLowerCase);
   }
 }
