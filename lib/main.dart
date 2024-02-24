@@ -58,11 +58,15 @@ class MyHomePage extends StatelessWidget {
           children: [
             Text('A random AWESOME idea:'), // ← Example change.
             BigCard(pair: pair),
-            ElevatedButton(
-              onPressed: () {
-                appState.getNext();
-              },
-              child: Text('Next'),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    appState.getNext();
+                  },
+                  child: Text('Next'),
+                ),
+              ],
             ),
           ],
         ),
