@@ -59,6 +59,7 @@ class MyHomePage extends StatelessWidget {
             Text('A random AWESOME idea:'), // ← Example change.
             BigCard(pair: pair),
             Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 ElevatedButton(
                   onPressed: () {
